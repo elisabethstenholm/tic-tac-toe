@@ -14,10 +14,8 @@ let showPlayer (player: Player) : string =
     | X -> "X"
     | O -> "O"
 
-let otherPlayer (player: Player) : Player =
-    match player with
-    | X -> O
-    | O -> X
+// TODO: this function should return the other player
+let otherPlayer (player: Player) : Player = X
 
 // State of board positions
 (*------------------------------------------------------*)
@@ -25,15 +23,11 @@ type CellState =
     | Empty
     | Taken of Player
 
-let showCellState (cellState: CellState) : string =
-    match cellState with
-    | Empty -> "-"
-    | Taken player -> showPlayer player
+// TODO: this function should return "-" for empty cells and the result of `showPlayer` for taken cells
+let showCellState (cellState: CellState) : string = ""
 
-let isEmpty (cellState: CellState) : bool =
-    match cellState with
-    | Empty -> true
-    | Taken _ -> false
+// TODO: this function should return true if the cell is empty and false if it is taken
+let isEmpty (cellState: CellState) : bool = true
 
 // Board positions
 (*------------------------------------------------------*)
@@ -99,8 +93,8 @@ let getCellState (board: Board) (pos: Position) : CellState =
     | BM -> board.BM
     | BR -> board.BR
 
-let boardIsFull (board: Board) : bool =
-    allPositions |> List.map (getCellState board) |> List.exists isEmpty |> not
+// TODO: this function should return true if all cells are taken, otherwise false
+let boardIsFull (board: Board) : bool = true
 
 // Winning streaks
 (*------------------------------------------------------*)
@@ -149,11 +143,8 @@ type Outcome =
     | Win of Player * Board
     | Draw of Board
 
-let allOnePlayer (cells: CellState * CellState * CellState) : Option<Player> =
-    match cells with
-    | Taken player, cell2, cell3 when cell2 = Taken player && cell3 = cell2 -> Some player
-    | Taken _, _, _ -> None
-    | Empty, _, _ -> None
+// TODO: this function should return true if all cells are taken by the same player, otherwise false
+let allOnePlayer (cells: CellState * CellState * CellState) : Option<Player> = None
 
 let tryGetOutcome (board: Board) : Option<Outcome> =
     if boardIsFull board then
@@ -179,7 +170,6 @@ let placeMark (board: Board) (player: Player) (pos: Position) : Board =
     | BM -> { board with BM = Taken player }
     | BR -> { board with BR = Taken player }
 
-let tryPlaceMark (board: Board) (player: Player) (pos: Position) : Result<Board, PositionError> =
-    match getCellState board pos with
-    | Empty -> Ok(placeMark board player pos)
-    | Taken _ -> Error PositionTaken
+// TODO: this function should set the cell at `pos` to taken by `player` if it is empty,
+// otherwise it should return an error stating that the position is taken
+let tryPlaceMark (board: Board) (player: Player) (pos: Position) : Result<Board, PositionError> = Ok board
