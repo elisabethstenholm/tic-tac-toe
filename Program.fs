@@ -1,20 +1,24 @@
 ﻿open System
 open Errors
+open Utilities
 open Game
 
 let rec getValidInput (gameState: GameState) : Board =
     Console.Write "Where do you want to place your mark (tl, tm, tr, ml, mm, mr, bl, bm, br)? "
     let input = Console.ReadLine()
 
-    match tryReadPosition input with
-    | Ok pos ->
-        match tryPlaceMark gameState.CurrentBoard gameState.CurrentPlayer pos with
-        | Ok newBoard -> newBoard
-        | Error err ->
-            Console.WriteLine(showPositionError err)
-            getValidInput gameState
+    let newBoardResult =
+        result {
+            let! pos = tryReadPosition input
+            let! newBoard = tryPlaceMark gameState.CurrentBoard gameState.CurrentPlayer pos
+
+            return newBoard
+        }
+
+    match newBoardResult with
+    | Ok newBoard -> newBoard
     | Error err ->
-        Console.WriteLine(showInputError err)
+        Console.WriteLine(showPositionError err)
         getValidInput gameState
 
 let rec gameLoop (gameState: GameState) : Outcome =

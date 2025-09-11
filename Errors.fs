@@ -1,13 +1,10 @@
 module Errors
 
-type InputError = UnknownPosition of string
+type PositionError =
+    | UnknownPosition of string
+    | PositionTaken
 
-let showInputError (inputError: InputError) : string =
-    match inputError with
+let showPositionError (err: PositionError) : string =
+    match err with
     | UnknownPosition pos -> $"Unknown position: {pos}"
-
-type PositionError = | PositionTaken
-
-let showPositionError (positionError: PositionError) : string =
-    match positionError with
     | PositionTaken -> "Position already taken!"

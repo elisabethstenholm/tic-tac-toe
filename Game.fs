@@ -50,7 +50,7 @@ type Position =
 
 let allPositions: List<Position> = [ TL; TM; TR; ML; MM; MR; BL; BM; BR ]
 
-let tryReadPosition (pos: string) : Result<Position, InputError> =
+let tryReadPosition (pos: string) : Result<Position, PositionError> =
     match pos.ToLower() with
     | "tl" -> Ok TL
     | "tm" -> Ok TM
