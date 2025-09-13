@@ -3,27 +3,27 @@ open Errors
 open Utilities
 open Game
 
-let rec getValidInput (gameState: GameState) : Board =
+let tryGetNewBoard (oldState: GameState) (input: string) : Result<Board, PositionError> =
+    result {
+        let! pos = tryReadPosition input
+        let! newBoard = tryPlaceMark oldState.CurrentBoard oldState.CurrentPlayer pos
+
+        return newBoard
+    }
+
+let rec getNewBoard (gameState: GameState) : Board =
     Console.Write "Where do you want to place your mark (tl, tm, tr, ml, mm, mr, bl, bm, br)? "
     let input = Console.ReadLine()
 
-    let newBoardResult =
-        result {
-            let! pos = tryReadPosition input
-            let! newBoard = tryPlaceMark gameState.CurrentBoard gameState.CurrentPlayer pos
-
-            return newBoard
-        }
-
-    match newBoardResult with
+    match tryGetNewBoard gameState input with
     | Ok newBoard -> newBoard
     | Error err ->
         Console.WriteLine(showPositionError err)
-        getValidInput gameState
+        getNewBoard gameState
 
 let rec gameLoop (gameState: GameState) : Outcome =
     Console.WriteLine(showGameState gameState)
-    let newBoard = getValidInput gameState
+    let newBoard = getNewBoard gameState
 
     match tryGetOutcome newBoard with
     | None ->
