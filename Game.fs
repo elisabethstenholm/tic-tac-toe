@@ -143,7 +143,7 @@ type Outcome =
     | Win of Player * Board
     | Draw of Board
 
-// TODO: this function should return true if all cells are taken by the same player, otherwise false
+// TODO: this function should return the player if all cells are taken by the same player, otherwise nothing
 let allOnePlayer (cells: CellState * CellState * CellState) : Option<Player> = None
 
 let tryGetOutcome (board: Board) : Option<Outcome> =
