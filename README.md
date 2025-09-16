@@ -21,18 +21,17 @@ heller noen andre sideeffekter. Dette betyr at du alltid vet hva funksjonen gjø
 
 **NB:** I funksjonell programmering gir vi argumentene til en funksjon med mellomrom, uten parenteser. For eksempel:
 ```fsharp
-myFunction firstArgument secondArgument
+someFun arg1 (someOtherFun arg2 arg3)
 ```
 *ikke*
 ```fsharp
-myFunction(firstArgument, secondArgument)
+someFun(arg1, someOtherFun arg2 arg3)
 ```
 
-Istedet betyr `(firstArgument, secondArgument)` i F# en tupel som inneholder de to verdiene. Typen for en tupel i F#
-skrives `FirstType * SecondType`.
+Istedet betyr `(arg1, someOtherFun arg2 arg3)` i F# en tupel som inneholder de to verdiene.
 
-Et annet sentralt konsept i funksjonell programmering er *algebraiske datatyper*. I F# har vi *record types* og *discriminated
-unions*. Disse gjør det lettere å uttrykke det man vi modellere så riktig som mulig.
+Et annet sentralt konsept i funksjonell programmering er *algebraiske datatyper*. I F# har vi *records* og *discriminated
+unions*. Disse gjør det lettere å uttrykke det man vil modellere så riktig som mulig.
 
 ### Records
 
@@ -244,7 +243,7 @@ må returtypen fra `function1` være samme som input typen til `function2`.)
 **Oppgave:** Fyll ut funksjonen `boardIsFull`. Den skal returnere `true` hvis alle posisjoner er tatt av en eller annen
 spiller, ellers `false`.
 
-**Tips:** bruk `allPositions`, `getCellState` `isTaken` sammen med
+**Tips:** bruk `allPositions`, `getCellState`, `isTaken` sammen med
 [`List.map`](https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#map),
 [`List.forall`](https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#forall)
 fra F# sitt standardbibliotek.

@@ -10,7 +10,6 @@
     <Compile Include="Errors.fs" />
     <Compile Include="Utilities.fs" />
     <Compile Include="Game.fs" />
-    <Compile Include="Solution.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
