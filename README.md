@@ -1,5 +1,9 @@
 # Tic-tac-toe i F#
 
+I dette repoet får du prøve på F# ved å lage det klassiske spillet Tic tac toe. Repoet inneholder skjelettet til spillet,
+men noen funksjoner er feil. De skal du rette opp i, i løpet av 6 oppgaver som blir gradvis vanskeligere. Alle funksjonene
+du skal fikse på ligger i filen `Game.fs`. Løsningsforslag finnes i branchen `solution`.
+
 ## Installasjon
 
 For å kjøre koden i repoet trenger du å ha .NET sdk 8 installert. Instrukser finner du [her](https://learn.microsoft.com/en-us/dotnet/core/install/).
@@ -199,7 +203,7 @@ let takenBySamePlayer (cell1: CellState) (cell2: CellState) : Option<Player> =
 **Oppgave:** Fyll ut funksjonen `allOnePlayer` som sjekker om tre celler er tatt av samme spiller og i det tilfellet
 returnerer den spillern, ellers skal den returnere `None`.
 
-## Oppgave 5
+## Oppgave 5 🌶️
 
 I funksjonell programmering bruker vi ikke exceptions. Funksjonene vi lager er nesten alltid uten sideefekkter. Istedet
 bruker vi i F# typen `Result`. Den er også en discriminated union:
@@ -227,7 +231,7 @@ er tatt `PositionTaken`.
 
 **Tips:** du kan putte et uttrykk, f.eks. resultatet av en funksjon, i `match ... with`. Bruk funksjonene `getCellState` og `placeMark`.
 
-## Oppgave 6 *
+## Oppgave 6 🌶️🌶️
 
 I funksjonell programmering kjører vi gjerne en verdi igjennom flere funksjoner etter hverandre. For å gjøre det kan vi
 bruke `|>`:
@@ -247,3 +251,11 @@ spiller, ellers `false`.
 [`List.map`](https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#map),
 [`List.forall`](https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#forall)
 fra F# sitt standardbibliotek.
+
+## Ekstra oppgave 🌶️️🌶️🌶️
+
+Prøv å skrive om programmet med følgende type for brettet:
+
+```fsharp
+type Board = Map<Position, Player>
+```
